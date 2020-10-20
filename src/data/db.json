@@ -1,0 +1,20 @@
+{
+  "doctors": [
+    {
+      "id": 1,
+      "nome": "Ricardo Lopes",
+      "especialidade": "cardiologista"
+    },
+    {
+      "nome": "Luiz",
+      "especialidade": "Cirurgião",
+      "id": 2
+    },
+    {
+      "nome": "André Monte",
+      "especialidade": "Anestesista",
+      "id": 3
+    }
+  ],
+  "pets": []
+}
