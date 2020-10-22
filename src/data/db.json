@@ -3,7 +3,7 @@
     {
       "id": 1,
       "nome": "Ricardo Lopes",
-      "especialidade": "cardiologista"
+      "especialidade": "Cardiologista"
     },
     {
       "nome": "Luiz",
@@ -16,5 +16,24 @@
       "id": 3
     }
   ],
-  "pets": []
+  "consultations": [
+    {
+      "nome": "Tomas",
+      "especie": "cachorro",
+      "raca": "poodle",
+      "urgente": false,
+      "atendimento": "Cardiologista",
+      "status": "pendente",
+      "id": 1
+    },
+    {
+      "nome": "Thor",
+      "especie": "cachorro",
+      "raca": "pitbul",
+      "urgente": true,
+      "atendimento": "Cardiologista",
+      "status": "pendente",
+      "id": 2
+    }
+  ]
 }
