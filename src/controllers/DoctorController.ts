@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import api from '../api/api';
+import DoctorService from '../services/DoctorService';
 
 interface Doctor {
     nome: string,
@@ -8,81 +9,55 @@ interface Doctor {
 
 class DoctorController {
 
-    getAll(req: Request, res: Response) {
+    async getAll(req: Request, res: Response) {
 
-        api.get('/doctors')
-            .then((response) => {
-                res.json(response.data)
-                return
-            })
-            .catch((err) => {
-                res.json(err)
-                return
-            })
+        let result = await DoctorService.getAll();
+
+        res.json(result);
+        return
     };
     
-    getOne(req: Request, res: Response){
+    async getOne(req: Request, res: Response){
 
-        api.get('/doctors', {
-            params: {
-                id: req.query.id
-            }
-        })
-        .then((response) => {
-            res.json(response.data)
-            return
-        })
-        .catch((err) => {
-            res.json(err)
-            return
-        })
+        let id = req.query.id as string
+
+        let result = await DoctorService.getOne(id);
+
+        res.json(result);
+        return
+
     }
 
-    create(req: Request, res: Response){
+    async create(req: Request, res: Response){
         
-        const doctor = req.body;
+        let doctor = req.body;
 
-        api.post('/doctors', doctor)
-            .then((response) => {
-                res.send(response.data)
-                return
-            })
-            .catch((err) => {
-                console.log(err)
-                return
-            })
+        let result = await DoctorService.create(doctor);
+
+        res.json(result);
+        return
+
     }     
 
-    update(req: Request, res: Response){
+    async update(req: Request, res: Response){
 
-        const doctor = req.body
-        const id = req.query.id
+        let doctor = req.body
+        let id = req.query.id as string;
 
-        api.patch(`/doctors/${id}`, doctor)
-        .then((response) => {
-            res.send(response.data)
-            return
-        })
-        .catch((err) => {
-            res.send(err)
-            return
-        })
+        let result = await DoctorService.update(doctor, id);
+        
+        res.json(result);
+        return
     }
 
-    delete(req: Request, res: Response){
+    async delete(req: Request, res: Response){
 
-        const id = req.query.id
+        const id = req.query.id as string;
 
-        api.delete(`/doctors/${id}`)
-        .then((response) => {
-            res.json(response.data)
-            return
-        })
-        .catch((err) => {
-            res.json(err)
-            return
-        })
+        let result = await DoctorService.delete(id);
 
+        res.json(result);
+        return
     }
 };
 
