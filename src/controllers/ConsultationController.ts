@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import api from '../api/api';
+import ConsultationService from '../services/ConsultationService';
 
 interface Consultation {
     nome: string,
@@ -12,117 +13,54 @@ interface Consultation {
 
 class ConsultationController {
 
-    getAll(req: Request, res: Response) {
+    async getAll(req: Request, res: Response) {
 
-        api.get('/consultations')
-            .then((response) => {
-                res.json(response.data)
-                return
-            })
-            .catch((err) => {
-                res.json(err)
-                return
-            })
+        let result = await ConsultationService.getAll();
+
+        res.json(result);
+        return
+        
     };
     
-    getOne(req: Request, res: Response){
+    async getOne(req: Request, res: Response){
 
-        api.get('/consultations', {
-            params: {
-                id: req.query.id
-            }
-        })
-        .then((response) => {
-            res.json(response.data)
-            return
-        })
-        .catch((err) => {
-            res.json(err)
-            return
-        })
+        let id = req.query.id as string;
+
+        let result = await ConsultationService.getOne(id);
+
+        res.json(result);
+        return
     }
 
     async getDoctorConsultation(req: Request, res: Response) {
 
-        let doctorId = req.query.id
+        let doctorId = req.query.id as string;
 
-        let doctorSpecialty = await api.get(`/doctors/${doctorId}`).then((response) => response.data.especialidade);
+        let result = await ConsultationService.getDoctorConsultation(doctorId);
 
-        api.get('/consultations', {
-            params: {
-                atendimento: doctorSpecialty
-            }
-        })
-        .then((response) => {
-
-            let consultations = response.data.filter((item: any) => {
-                return item.status == "pendente";
-            });
-
-            let consultation = consultations.find((item: any) => {
-                if (item.urgente == true) {
-                    return item;
-                } else {
-                   return item[0];
-                }
-            });
-
-            res.json(consultation); 
-            return
-        })
-        .catch((err) => {
-            res.json(err)
-            return
-        });
-
+        res.json(result);
+        return
     };
 
-    create(req: Request, res: Response){
+    async create(req: Request, res: Response){
         
-        let consultation: Consultation = req.body;
+        let consultation = req.body;
 
-            api.post('/consultations', consultation)
-            .then((response) => {
-                res.send(response.data)
-                return
-            })
-            .catch((err) => {
-                console.log(err)
-                return
-            })
+        let result = await ConsultationService.create(consultation);
 
+        res.json(result);
+        return
     }     
 
-    update(req: Request, res: Response){
+    async update(req: Request, res: Response){
 
-        const status = req.body
-        const id = req.query.id
+        let status = req.body.status as string;
+        let id = req.query.id as string;
 
-        api.patch(`/consultations/${id}`, status)
-        .then((response) => {
-            res.send(response.data)
-            return
-        })
-        .catch((err) => {
-            res.send(err)
-            return
-        })
-    }
+        let result = await ConsultationService.update(id, status);
 
-    delete(req: Request, res: Response){
-
-        const id = req.query.id
-
-        api.delete(`/consultations/${id}`)
-        .then((response) => {
-            res.json(response.data)
-            return
-        })
-        .catch((err) => {
-            res.json(err)
-            return
-        })
-
+        res.json(result);
+        return
     }
 
 };

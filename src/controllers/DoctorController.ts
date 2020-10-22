@@ -1,11 +1,5 @@
 import { Request, Response } from 'express';
-import api from '../api/api';
 import DoctorService from '../services/DoctorService';
-
-interface Doctor {
-    nome: string,
-    especialidade: string
-}
 
 class DoctorController {
 
