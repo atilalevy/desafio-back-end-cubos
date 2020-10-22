@@ -1,15 +1,5 @@
 import { Request, Response } from 'express';
-import api from '../api/api';
 import ConsultationService from '../services/ConsultationService';
-
-interface Consultation {
-    nome: string,
-    especie: string,
-    raca: string,
-    urgente: boolean,
-    atendimento: string,
-    status: string
-}
 
 class ConsultationController {
 

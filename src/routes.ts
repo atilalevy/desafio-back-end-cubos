@@ -16,7 +16,6 @@ routes.get('/consultations/doctor', ConsultationsController.getDoctorConsultatio
 routes.get('/consultations', ConsultationsController.getOne);
 routes.get('/consultations', ConsultationsController.getAll);
 routes.post('/consultations', ConsultationsController.create);
-routes.delete('/consultations', ConsultationsController.delete);
 routes.patch('/consultations', ConsultationsController.update);
 
 export default routes;
