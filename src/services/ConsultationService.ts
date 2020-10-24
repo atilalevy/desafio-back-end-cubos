@@ -27,11 +27,11 @@ class ConsultationService {
 
     async getOne(id: string){
 
-        let result = await api.get('/consultations', {
-                params: {
-                    id: id
-                }
-            })
+        let result = await api.get('/consultations/', {
+            params: {
+                id: id
+            }
+        })
             .then((response) => {
                 return response.data
             })

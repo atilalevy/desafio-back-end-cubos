@@ -12,7 +12,7 @@
     },
     {
       "nome": "André Monte",
-      "especialidade": "Anestesista",
+      "especialidade": "Hematologia",
       "id": 3
     },
     {
@@ -44,6 +44,16 @@
       "atendimento": "Cardiologista",
       "status": "pendente",
       "id": 2
+    },
+    {
+      "nome": "Aslam",
+      "especie": "gato",
+      "raca": "vira-lata",
+      "urgente": false,
+      "atendimento": "Oftamologista",
+      "status": "pendente",
+      "id": 3,
+      "concluído": ""
     }
   ]
 }

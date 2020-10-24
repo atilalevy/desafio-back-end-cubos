@@ -12,9 +12,9 @@ routes.delete('/doctors', DoctorController.delete);
 routes.patch('/doctors', DoctorController.update);
 
 // consultations route
-routes.get('/consultations/doctor', ConsultationsController.getDoctorConsultation);
 routes.get('/consultations', ConsultationsController.getOne);
 routes.get('/consultations', ConsultationsController.getAll);
+routes.get('/consultations/doctor', ConsultationsController.getDoctorConsultation);
 routes.post('/consultations', ConsultationsController.create);
 routes.patch('/consultations', ConsultationsController.update);
 
